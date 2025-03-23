@@ -1,0 +1,13 @@
+# Modelo de regresión líneal
+model{
+  # Definimos la verosimilitud
+  for (i in 1:n) {
+    Y[i] ~ dnorm(inprod(X[i,],beta[]),taue)
+  }
+  # Definimos las priors de los coeficientes
+  for (j in 1:p) {
+    beta[j] ~ dnorm(0,taub*taue)
+  }
+  taue ~ dgamma(0.001,0.001)
+  taub ~ dgamma(0.001,0.001)
+}
